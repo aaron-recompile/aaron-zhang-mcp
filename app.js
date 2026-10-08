@@ -11,7 +11,7 @@ import { declareDiscoveryExtension, bazaarResourceServerExtension } from "@x402/
 import { facilitator } from "@coinbase/x402";
 import { PRODUCTS as PROTOCOL } from "./lib/protocol.js";
 import { LIVE as BTC } from "./lib/btc-live.js";
-import { card, compare, btcDigest } from "./lib/preipo.js";
+import { card, compare, btcDigest, onchain } from "./lib/preipo.js";
 import { RELATED } from "./lib/related.js";
 
 const HOST = "https://aaron-zhang-mcp.vercel.app";
@@ -34,6 +34,9 @@ const TOOLS = [
   { name: "openai_vs_anthropic", price: "$0.05", tags: ["openai", "anthropic", "comparison", "valuation", "revenue"],
     description: "OpenAI vs Anthropic side by side: full-year revenue, latest run-rate, last private round and post-money valuation, IPO status, compute obligations, cash, valuation-to-run-rate multiples; gaps listed. Each value keeps its source and grade.",
     inputShape: {}, inputJson: { properties: {} }, run: async () => compare() },
+  { name: "preipo_onchain_vs_private", price: "$0.02", tags: ["pre-ipo", "hyperliquid", "valuation", "perps", "anthropic"],
+    description: "Live on-chain pre-IPO perps vs private valuation: OpenAI and Anthropic perpetuals on Hyperliquid HIP-3 (io:OAI, io:ANTH) as implied company valuation, against the last private round post-money and IPO valuation target. Premium/discount, funding, open interest, volume.",
+    inputShape: {}, inputJson: { properties: {} }, run: async () => onchain() },
   { name: "bitcoin_technical_updates", price: "$0.01", tags: ["bitcoin", "lightning", "bitcoin-core", "bip", "protocol"],
     description: "What actually changed in Bitcoin and Lightning recently: each item has status (merged, released, activated, documentation), layer, why it matters, what has not happened yet, and the GitHub source.",
     inputShape: {}, inputJson: { properties: {} }, run: async () => btcDigest() },
